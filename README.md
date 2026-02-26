@@ -1,61 +1,132 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Provincial & City Management System for Charity and Donations
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a **multi-level management system** built with **Laravel**, designed to manage provinces, cities, users, and collaborators (ambassadors) for handling **charity donations, transactions, and wallet-based payments**.
 
-## About Laravel
+The system focuses on **clear role hierarchy, financial transparency, and supervision**, making it suitable for large-scale charity or social platforms.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🎯 Project Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The platform is structured around a **centralized administration system** where responsibilities and permissions are distributed across different management levels:
 
-## Learning Laravel
+- **Super Admin** (Global Administration)
+- **Provincial Managers**
+- **City Managers**
+- **Collaborators / Ambassadors**
+- **End Users (Donors)**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Each level has defined responsibilities, access control, and monitoring capabilities.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🏗 System Hierarchy
 
-## Laravel Sponsors
+### 🔑 Super Admin
+- Full access to the entire system
+- Manages provinces
+- Assigns provincial administrators
+- Oversees all financial activities and reports
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🏛 Provincial Management
+- Manages cities within the province
+- Assigns city managers
+- Supervises city-level activities
+- Monitors transactions and donations
 
-### Premium Partners
+### 🏙 City Management
+- Manages collaborators (ambassadors)
+- Oversees donations and wallet transactions
+- Reviews reports related to users and collaborators
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+### 🤝 Collaborators (Ambassadors)
+- Promote the platform to new users
+- Receive a **percentage-based commission** for successful referrals
+- Earn commissions when referred users donate to charities
+- Can receive rewards either as **cash** or **equipment-based contributions**
 
-## Contributing
+### 👤 Users (Donors)
+- Donate to charities via:
+  - Online payment gateway
+  - Wallet system
+- Can donate:
+  - Money
+  - Equipment or goods
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 💰 Financial & Donation System
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Integrated **wallet system**
+- Online **payment gateway**
+- Support for:
+  - Monetary donations
+  - Equipment / non-cash donations
+- Automatic commission calculation for collaborators
+- Transparent transaction records for auditing
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🔍 Supervision & Monitoring
 
-## License
+- Province and city managers act primarily as **supervisory roles**
+- Full visibility over:
+  - Donations
+  - Transactions
+  - Collaborator performance
+- Designed to ensure **financial transparency and accountability**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🔐 Access Control & Permissions
+
+- Role-based access control (RBAC)
+- Each role has limited and clearly defined permissions
+- Prevents unauthorized access to sensitive financial data
+
+---
+
+## 🚀 Key Features
+
+✔️ Multi-level admin system  
+✔️ Province & city-based management  
+✔️ Collaborator referral and commission system  
+✔️ Wallet and payment gateway integration  
+✔️ Cash & equipment donation support  
+✔️ Transparent transaction tracking  
+✔️ Scalable architecture for large systems  
+
+---
+
+## 🛠 Built With
+
+- Laravel
+- MySQL
+- RESTful Architecture
+- Role-Based Access Control (RBAC)
+
+---
+
+## 📌 Use Cases
+
+- National or regional charity platforms
+- Donation-based applications
+- Government-supported social aid systems
+- Large NGOs with hierarchical management needs
+
+---
+
+## 🧑‍💻 Author
+
+**Arshia Batyari**  
+Laravel Developer  
+Focused on Scalable Systems & Clean Architecture
+
+---
+
+## 📎 Final Note
+
+This project is designed to be **scalable, secure, and transparent**, making it suitable for real-world charity and social impact platforms.  
+The architecture allows future expansion such as reporting dashboards, analytics, and mobile app integration.
+
+Contributions and suggestions are always welcome 🙌
