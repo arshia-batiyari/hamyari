@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('sms_tokens', function (Blueprint $table) {
+        Schema::create('sms_tokens', function (Blueprint $table) {
             $table->id();
             $table->string('mobile')->unique();
             $table->string('token', 10);

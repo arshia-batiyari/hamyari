@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('companion_id')->constrained('companions')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->unsignedBigInteger('amount');
-            $table->foreignId('transaction_id')->nullable()->constrained('transactions');
+            $table->enum('type',['receipt','online']);
             $table->enum('status',Deposit::getAvailableStatus());
             $table->timestamps();
         });

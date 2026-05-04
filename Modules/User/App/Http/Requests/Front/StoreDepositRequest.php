@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Equipment\App\Http\Requests\Admin;
+namespace Modules\User\App\Http\Requests\Front;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class StoreDepositRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -12,7 +12,10 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string'
+            'name' => ['required', 'string', 'max:255'],
+            'mobile' => ['required', 'string', 'regex:/^09[0-9]{9}$/'], 
+            'amount' => ['required', 'numeric', 'min:1'],
+            'image' => ['nullable', 'image'], 
         ];
     }
 

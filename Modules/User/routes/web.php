@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\User\App\Http\Controllers\Admin\UserController;
+use Modules\User\App\Http\Controllers\Front\DepositController;
 
-Route::middleware(['web', 'auth:admin'])->name('admin.')->prefix('admin')->group(function () {
-    Route::resource('users', UserController::class);
+Route::prefix('/')->name('front.')->group(function() {
+    Route::post('deposits/store', [DepositController::class,'store'])->name('deposits.store');
 });

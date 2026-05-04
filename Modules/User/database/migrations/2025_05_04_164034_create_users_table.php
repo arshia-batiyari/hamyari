@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('mobile');
-            $table->string('code')->nullable();
-            $table->string('national_code')->nullable();
-            // $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

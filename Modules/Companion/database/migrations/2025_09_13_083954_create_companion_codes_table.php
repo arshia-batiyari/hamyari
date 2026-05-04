@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companion_codes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('companion_id')->constrained('companions')->onDelete('cascade');
-            $table->string('code')->unique();
-            $table->timestamps();
-        });
+        // Schema::create('companion_codes', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('companion_id')->constrained('companions')->onDelete('cascade');
+        //     $table->string('code')->unique();
+        //     $table->timestamps();
+        // });
     }
 
     /**

@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('partner_groups', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
-            $table->foreignId('province_id')->constrained('provinces')->onDelete('cascade');
-            $table->date('marriage_date');
-            $table->enum('status', ['new', 'pending','await_payment','paid','rejected'])
-                    ->default('new');
-            $table->text('status_description')->nullable();
-            $table->string('marriage_location')->nullable();
-            $table->string('marriage_certificate_no');
-            $table->text('notes')->nullable(); 
-            $table->timestamps();
-        });
+        // Schema::create('partner_groups', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
+        //     $table->foreignId('province_id')->constrained('provinces')->onDelete('cascade');
+        //     $table->date('marriage_date');
+        //     $table->enum('status', ['new', 'pending','await_payment','paid','rejected'])
+        //             ->default('new');
+        //     $table->text('status_description')->nullable();
+        //     $table->string('marriage_location')->nullable();
+        //     $table->string('marriage_certificate_no');
+        //     $table->text('notes')->nullable(); 
+        //     $table->timestamps();
+        // });
     }
 
     /**

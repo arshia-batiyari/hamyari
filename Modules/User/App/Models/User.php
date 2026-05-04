@@ -14,36 +14,18 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     */
-    protected $fillable = ['name','mobile','code','national_code','status'];
-    protected $appends = [
-        'balance',
-    ];
-
-    public function getBalanceAttribute()
+    protected $fillable = ['name','mobile'];
+    
+    public function deposits()
     {
-        return 0;
-    }
-    public function cities()
-    {
-        return $this->hasMany(City::class);
-    }
-    public function notes()
-    {
-        return $this->hasMany(Note::class);
-    }
-    public function provinces()
-    {
-        return $this->hasMany(Province::class);
+        return $this->hasMany(Deposit::class);
     }
 
-    public function scopeFilters($query)
-    {
-        return $query
-        ->when(request('mobile'), fn($q) => $q->where('mobile', request('mobile')))
-        ->when(request('national_code'), fn($q) => $q->where('national_code', request('national_code')))
-        ->when(request('name'), fn($q) => $q->where('name', 'LIKE', '%' . request('name') . '%'));
-    }
+    // public function scopeFilters($query)
+    // {
+    //     return $query
+    //     ->when(request('mobile'), fn($q) => $q->where('mobile', request('mobile')))
+    //     ->when(request('national_code'), fn($q) => $q->where('national_code', request('national_code')))
+    //     ->when(request('name'), fn($q) => $q->where('name', 'LIKE', '%' . request('name') . '%'));
+    // }
 }
