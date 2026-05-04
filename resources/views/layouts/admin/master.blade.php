@@ -72,31 +72,8 @@
         #growls-default {
             right: 80%;
         }
-        label,.card-title {
-            font-weight: bold;
-        }
-        .text-bold{
-            font-weight: bold;
-        }
-        .test {
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
         .page-header{
             margin:0 !important;
-        }
-        .inactive {
-            opacity: 0.5;
-        }
-
-        .hidden {
-            display: none;
-            float: left;
-        }
-
-        .add {
-            display: flex;
-            float: left;
         }
     </style>
 
@@ -120,8 +97,6 @@
 
             </div>
         </div>
-
-    @include('layouts.admin.footer')
     </div>
 
 

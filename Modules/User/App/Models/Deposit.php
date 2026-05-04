@@ -3,11 +3,10 @@
 namespace Modules\User\App\Models;
 
 use App\Models\User;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
+use Modules\Sms\Sms;
+use Modules\Core\Classes\CoreSettings;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Support\Facades\Log;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 use Modules\Invoice\Classes\Payable;
@@ -23,6 +22,7 @@ class Deposit extends Payable implements HasMedia
         'amount',
         'type',
         'user_id',
+        'status_payment',
         'status'
     ];
     public static function getAvailableStatus(): array
@@ -50,29 +50,41 @@ class Deposit extends Payable implements HasMedia
         }
     }
 
-    // public static function storeModel($amount)
-    // {
-    //     $user = Auth::user();
-    //     $deposit = new static;
-
-    //     $deposit->fill([
-    //         'amount' =>  $amount,
-    //         'status' => static::STATUS_WAIT_FOR_PAYMENT
-    //     ]);
-    //     $deposit->companion()->associate($user->id);
-    //     $deposit->save();
-
-    //     return $deposit;
-    // }
-
     public function isPayable(): bool
     {
-        return $this->status === static::STATUS_CONFIRMED;
+        return $this->status_payment == 0;
     }
 
     public function getPayableAmount(): int
     {
         return (int)$this->amount;
+    }
+
+    public function onSuccessPayment(\Modules\Invoice\App\Models\Invoice $invoice)
+    {
+        $this->update([
+            'status_payment' => 1,
+        ]);
+        $pattern = app(CoreSettings::class)->get('sms.patterns.new_help_user');
+        $output = Sms::pattern($pattern)
+            ->data([
+                'token' => '',
+            ])->to([$this->helpUser->mobile])->send();
+        if ($output['status'] != 200) {
+            Log::debug('', [$output]);
+        }
+        return $this->callBackViewPayment($invoice);
+    }
+
+    public function callBackViewPayment($invoice): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        return view(
+            'core::invoice.callback',
+            [
+                'invoice' => $invoice,
+                'type' => 'order'
+            ]
+        );
     }
 
     //     public function onSuccessPayment(Invoice|\Modules\Invoice\App\Models\Invoice $invoice): View|Factory|JsonResponse|Application

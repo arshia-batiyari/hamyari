@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = ['name','mobile'];
+    protected $fillable = ['name','mobile','lottery_code'];
     
     public function deposits()
     {

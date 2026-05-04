@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->unsignedBigInteger('amount');
+            $table->boolean('status_payment');
+            $table->boolean('lottery_code');
             $table->enum('type',['receipt','online']);
             $table->enum('status',Deposit::getAvailableStatus());
             $table->timestamps();

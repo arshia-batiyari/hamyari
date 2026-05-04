@@ -3,10 +3,10 @@
 namespace Modules\User\App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\DepositResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\User\App\Http\Requests\Front\StoreDepositRequest;
+use Modules\User\App\Http\Resources\DepositResource;
 use Modules\User\App\Models\Deposit;
 use Modules\User\App\Models\User;
 
@@ -18,11 +18,14 @@ class DepositController extends Controller
             return DB::transaction(function () use ($request) {
 
                 $validated = $request->validated();
+                $mobile = $validated['mobile'];
 
-                $user = User::create([
-                    'name' => $validated['name'],
-                    'mobile' => $validated['mobile'],
-                ]);
+                $user = User::updateOrCreate(
+                    ['mobile' => $mobile],
+                    [
+                        'name' => $validated['name']
+                    ]
+                );
 
                 $hasImage = $request->hasFile('image');
                 $depositType = $hasImage ? 'receipt' : 'online';
@@ -36,13 +39,16 @@ class DepositController extends Controller
 
                 if ($depositType == 'online') {
                     $deposit->pay();
-                }else{
+                } else {
                     $file = $request->file('image');
-                
-                    $deposit->addMedia($file)->toMediaCollection('receipts'); 
+
+                    $deposit->addMedia($file)->toMediaCollection('receipts');
                 }
 
-                return redirect()->back()->with('success', 'اطلاعات با موفقیت ثبت شد ✅');
+                return response()->json([
+                    'message' => 'اطلاعات با موفقیت ثبت شد ✅',
+                    'data' => new DepositResource($deposit),
+                ], 201);
             });
         } catch (\Exception $e) {
             return response()->json([

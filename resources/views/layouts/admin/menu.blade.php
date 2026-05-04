@@ -6,7 +6,7 @@
                     <li aria-haspopup="true">
                         <a href="{{ route('admin.dashboard') }}" class="sub-icon"><i class="feather feather-home hor-icon"></i>داشبورد</a>
                     </li>
-                    <li aria-haspopup="true">
+                    {{-- <li aria-haspopup="true">
                         <a href="#" class="">
                             <i class="feather feather-users hor-icon"></i>مدیریت کاربران<i class="fa fa-angle-down horizontal-icon"></i>
                         </a>
@@ -40,7 +40,7 @@
                             <li><a aria-haspopup="true" href="{{ route('admin.reports.partners-aggregate') }}" class="slide-item">گزارش جمعی درخواست های زوجین</a></li>
                             <li><a aria-haspopup="true" href="{{ route('admin.reports.companions') }}" class="slide-item">گزارش همیاران</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </nav>
         </div>

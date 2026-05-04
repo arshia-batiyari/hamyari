@@ -1,16 +1,11 @@
-<?php 
-namespace App\Http\Resources;
+<?php
+namespace Modules\User\App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DepositResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         return [
@@ -24,15 +19,7 @@ class DepositResource extends JsonResource
             'type' => $this->type,
             'status' => $this->status,
             'image_url' => $this->getFirstMediaUrl('receipts'), 
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
-    }
-
-    private function getImageUrl(): ?string
-    {
-        if ($this->type === 'receipt' && $this->image_path ?? false) {
-            return asset('storage/' . $this->image_path);
-        }
-        
-        return null;
     }
 }
